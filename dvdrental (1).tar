@@ -1,0 +1,196 @@
+-- Hello World SQL Query, SELECT all records from actor table
+SELECT * 
+FROM actor;
+
+-- Query for First_name and Last_name in actor table
+SELECT first_name,last_name
+FROM actor;
+
+-- Query for a first_name that equals Nick using WHERE clause
+SELECT first_name,last_name
+FROM actor
+WHERE first_name = 'Nick';
+
+-- Query for first_name that is equal to Nick using the LIKE and WHERE clause
+SELECT first_name, last_name
+FROM actor
+WHERE first_name LIKE 'Nick';
+
+-- Query for all first_name data that starts with J using LIKE and WHERE clauses 
+-- using the wildcard
+SELECT first_name, last_name
+FROM actor
+WHERE first_name LIKE 'J%';
+
+-- Query for all first_name data that starts with K and has 2 letters after the K using LIKE WHERE clauses
+-- using underscore
+SELECT first_name,last_name
+FROM actor
+WHERE first_name LIKE 'K__';
+
+-- Query for all first_name data that starts with K and ends with th 
+-- using LIKE WHERE & BOTH wildcard AND underscore
+SELECT first_name, last_name
+FROM actor
+WHERE first_name LIKE 'K__%th';
+
+-- Comparing operators are:
+-- Greater than (>)
+-- Less than (<)
+-- Greater or Equal (>=) --Less or Equal (<=)
+-- Not Equal(<>)
+
+
+-- Explore Data with SELECT All Query (Do this when changing into a new table)
+SELECT *
+FROM payment;
+
+-- Query for data that shows customers who paid
+-- an amount GREATER than $2
+
+SELECT customer_id,amount
+FROM payment
+WHERE amount > 2.00;
+
+-- Query for data that shows customers who paid
+-- an amount LESS than $7.99
+SELECT customer_id,amount
+FROM payment
+WHERE amount < 7.99;
+
+-- Query for data that shows customers who paid
+-- an amount LESS than or EQUAL to $7.99
+SELECT customer_id, amount
+FROM payment
+WHERE amount <= 7.99;
+
+--Query for data that shows customers who paid
+-- an amount GREATER than or EQUAL to $2.00
+-- in ASCENDING order
+SELECT customer_id, amount
+FROM payment 
+WHERE amount >= 2.00
+ORDER BY amount ASC;
+
+-- QUERY for data that shows customers who paid 
+-- an amount BETWEEN $2.00 and $7.99
+SELECT customer_id, amount
+FROM payment
+WHERE amount BETWEEN 2.00 AND 7.99;
+
+-- Query for data that shows customers who paid
+-- an amount  NOT EQUAL to 2.99
+-- Order by DESCENDING order
+SELECT customer_id, amount
+FROM payment
+WHERE amount <> 2.99
+ORDER BY amount DESC;
+
+
+-- SQL agregations => SUM(), AVG(), COUNT(), MIN(), MAX()
+
+--Query to display sum of amounts payed that are greater $5.99
+SELECT SUM(amount)
+FROM payment
+WHERE amount > 5.99;
+
+-- Query to display average amount payed greater than $5.99
+SELECT AVG(amount)
+FROM payment
+WHERE  amount > 5.99;
+
+-- Query to display COUNT of DISTINCT amounts payed that are greater $5.99
+SELECT COUNT(DISTINCT amount)
+FROM payment
+WHERE amount > 5.99;
+
+-- Query to display the min amount GREATER than 7.99
+SELECT MIN(amount) AS Min_Num_Payments
+FROM payment
+WHERE amount > 7.99;
+
+-- Query to display the max amount greater than 7.99
+SELECT MAX(amount) AS Max_Num_Payments
+FROM payment
+WHERE amount > 7.99;
+
+-- Query to display all amounts(demo of groupby)
+SELECT amount
+FROM payment
+WHERE amount = 7.99;
+
+--Query to display different amounts grouped together
+--and count the amounts
+SELECT amount, COUNT(amount)
+FROM payment
+GROUP BY amount
+ORDER BY COUNT(amount);
+
+-- Query to display customer_id with the summed amounts for each customer_id
+SELECT customer_id, SUM(amount)
+FROM payment
+GROUP BY customer_id
+ORDER BY customer_id DESC;
+
+-- Query to display same as above (differently)
+-- A different way to use GROUP BY
+SELECT customer_id,amount
+FROM payment
+GROUP BY amount,customer_id
+ORDER BY customer_id DESC;
+
+-- Query to explore customer table
+SELECT *
+FROM customer;
+
+--Query to display customer_ids that show up more than 5 times 
+-- Group by customer's email 
+SELECT COUNT(customer_id),email
+FROM customer
+WHERE email LIKE 'j__.w%'
+GROUP BY email
+HAVING COUNT(customer_id) > 0;
+
+
+
+-- Answer: 1)  2ppl nick w. and daryl w. good sir
+
+SELECT first_name,last_name
+FROM actor
+WHERE last_name = 'Wahlberg';
+--2 nick w. and daryl w. good sir
+
+--Answer: 2) precisely 5607 payments were made BETWEEN 3.99 AND 5.99
+
+SELECT customer_id, amount
+FROM payment
+WHERE amount BETWEEN 3.99 AND 5.99;
+
+
+--DISTINCT)breaks down number of unique records 
+
+
+--Answer: 3) ? ask help ***
+-- SELECT COUNT(DISTINCT film_id)
+-- FROM film_category;
+
+
+
+--Query to display different amounts grouped together
+--and count the amounts
+SELECT film_id, COUNT(film_id)
+FROM inventory
+GROUP BY film_id
+ORDER BY COUNT(film_id) DESC;
+
+
+--Answer: 4) 
+--SELECT customer_id,last_name
+--FROM payment
+--WHERE 
+
+
+
+
+
+
