@@ -158,7 +158,7 @@ HAVING COUNT(customer_id) > 0;
 SELECT first_name,last_name
 FROM actor
 WHERE last_name = 'Wahlberg';
---2 nick w. and daryl w. good sir
+
 
 --Answer: 2) precisely 5607 payments were made BETWEEN 3.99 AND 5.99
 
@@ -171,26 +171,60 @@ WHERE amount BETWEEN 3.99 AND 5.99;
 
 
 --Answer: 3) ? ask help ***
--- SELECT COUNT(DISTINCT film_id)
+-- SELECT COUNT(DISTINCT film_id)  **Max?
 -- FROM film_category;
-
-
-
---Query to display different amounts grouped together
---and count the amounts
 SELECT film_id, COUNT(film_id)
 FROM inventory
 GROUP BY film_id
 ORDER BY COUNT(film_id) DESC;
 
 
---Answer: 4) 
---SELECT customer_id,last_name
---FROM payment
---WHERE 
+--Answer: 4) 0 times?
+SELECT last_name
+FROM customer
+WHERE last_name = 'William';
 
 
+--Answer: 5) * Max?
+--SELECT *
+--FROM staff
+SELECT staff_id
+FROM rental;
+-- WHERE  staff_id >= 0;
+
+--Answer: 6)  378 different district names :o
+SELECT COUNT(DISTINCT address),district
+FROM address
+WHERE district LIKE '%'
+GROUP BY district
+HAVING COUNT(address) > 0;
+
+--Answer: 7)
+SELECT COUNT(DISTINCT film_id),actor_id
+FROM film_actor
+WHERE film_id LIKE '%'
+GROUP BY actor_id
+HAVING COUNT(film_id) > 0;
 
 
+--Answer: 8) --30, I kept adding and removing underscore and adding the ppl that came up until it returned blank
+SELECT COUNT(last_name)
+FROM customer
+WHERE last_name LIKE '___es%';
+--GROUP BY last_name
+--HAVING COUNT(last_name) > 0;
 
+
+--Answer:9)
+SELECT
+FROM
+--Answer:10)
+SELECT COUNT(DISTINCT rating),title
+FROM film
+WHERE title LIKE '%'
+GROUP BY title
+HAVING COUNT(rating) > 0 ;
+-- SELECT COUNT(rating)
+-- FROM film
+-- WHERE rating 
 
